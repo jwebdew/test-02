@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>마우스 스크롤 헤더</title>
+    <style>
+        body {
+            height: 2000px;
+        }
+        header {
+            width: 100%;
+            height: 100px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            background-color: royalblue;
+            font-size: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transform: translateY(0);
+
+        }
+        header.active {
+            transform: translateY(-100px);
+        }
+    </style>
+    <script src="lib/jquery-3.6.0.min.js"></script>
+    <script>
+        $(function () {
+            $(function () {
+                var prevScrollTop = 0;
+
+                $(window).on('scroll', function(){
+
+                    var scrollTop = $(window).scrollTop(); //현재 스크롤 위치를 nowScrollTop 에 저장
+
+                    if (scrollTop > prevScrollTop) { 
+                        $('header').addClass('active'); 
+                    } else { 
+                        $('header').removeClass('active'); 
+                        
+                    } // 스크롤 방향(Up) 올릴때 -> 헤더에 active 클래스 제거
+                    prevScrollTop = scrollTop;  // prevScroll, nowScrollTop 조건 판단 후, 현재 스크롤값을 prevScrollTop 에 저장
+
+                });
+
+            });
+        })
+    </script>
+</head>
+
+<body>
+
+    <header class="header">header</header>
+</body>
+
+</html>
